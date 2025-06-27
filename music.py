@@ -85,6 +85,7 @@ class Music(commands.Cog):
             else:
                 print("[DOWNLOAD] Downloading new audio")
                 ydl.download([url])
+                print(f"[FILE CHECK] Exists? {os.path.exists(filename)} - {filename}")
                 song_cache[video_id] = (filename, now)
 
         guild_id = ctx.guild.id
@@ -114,10 +115,12 @@ class Music(commands.Cog):
                 print(f"[ERROR] after_playing: {exc}")
 
         ffmpeg_path = "/usr/bin/ffmpeg"
+        print(f"[PLAY] Playing file: {filename}")
         vc.play(
             discord.FFmpegPCMAudio(source=filename, executable=ffmpeg_path),
             after=_after_playing,
         )
+        print("[PLAY] Sent to VC")
         await ctx.send(
             f"▶ **{title}**\nRequested by {ctx.author.mention}"
         )
