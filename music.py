@@ -65,7 +65,7 @@ class Music(commands.Cog):
                 "preferredcodec": "mp3",
                 "preferredquality": "192",
             }],
-            "ffmpeg_location": r"C:\ffmpeg-7.1.1-essentials_build\bin",
+            "ffmpeg_location": "ffmpeg",
             "quiet": True,
         }
 
