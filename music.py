@@ -70,6 +70,7 @@ class Music(commands.Cog):
                 "preferredquality": "192",
             }],
             "ffmpeg_location": ffmpeg_path,
+            "cookiefile": "youtube_cookies.txt",
             "quiet": True,
         }
 
