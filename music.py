@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import discord
 from discord.ext import commands, tasks
 import yt_dlp
+import shutil
 
 CACHE_DURATION = timedelta(minutes=60)
 song_cache: dict[str, tuple[str, datetime]] = {}
@@ -57,6 +58,9 @@ class Music(commands.Cog):
             await vc.move_to(voice_channel)
 
         os.makedirs("music", exist_ok=True)
+
+        FFMPEG = shutil.which("ffmpeg") or "/usr/bin/ffmpeg"
+
         ydl_opts = {
             "format": "bestaudio/best",
             "outtmpl": "music/%(title)s.%(ext)s",
@@ -65,7 +69,7 @@ class Music(commands.Cog):
                 "preferredcodec": "mp3",
                 "preferredquality": "192",
             }],
-            "ffmpeg_location": "/usr/bin/ffmpeg",
+            "ffmpeg_location": "/usr/bin/FFMPEG",
             "quiet": True,
         }
 
@@ -117,7 +121,7 @@ class Music(commands.Cog):
         ffmpeg_path = "/usr/bin/ffmpeg"
         print(f"[PLAY] Playing file: {filename}")
         vc.play(
-            discord.FFmpegPCMAudio(source=filename, executable=ffmpeg_path),
+            discord.FFmpegPCMAudio(source=filename, executable=FFMPEG),
             after=_after_playing,
         )
         print("[PLAY] Sent to VC")
