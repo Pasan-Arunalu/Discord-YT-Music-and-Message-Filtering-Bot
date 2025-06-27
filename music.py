@@ -59,7 +59,7 @@ class Music(commands.Cog):
 
         os.makedirs("music", exist_ok=True)
 
-        FFMPEG = shutil.which("ffmpeg") or "/usr/bin/ffmpeg"
+        ffmpeg_path = shutil.which("ffmpeg") or "/usr/bin/ffmpeg"
 
         ydl_opts = {
             "format": "bestaudio/best",
@@ -69,7 +69,7 @@ class Music(commands.Cog):
                 "preferredcodec": "mp3",
                 "preferredquality": "192",
             }],
-            "ffmpeg_location": "/usr/bin/FFMPEG",
+            "ffmpeg_location": ffmpeg_path,
             "quiet": True,
         }
 
@@ -121,7 +121,7 @@ class Music(commands.Cog):
         ffmpeg_path = "/usr/bin/ffmpeg"
         print(f"[PLAY] Playing file: {filename}")
         vc.play(
-            discord.FFmpegPCMAudio(source=filename, executable=FFMPEG),
+            discord.FFmpegPCMAudio(source=filename, executable=ffmpeg_path),
             after=_after_playing,
         )
         print("[PLAY] Sent to VC")
