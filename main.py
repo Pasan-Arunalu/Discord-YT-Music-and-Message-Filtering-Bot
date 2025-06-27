@@ -7,14 +7,9 @@ from pathlib import Path
 import logging
 import asyncio
 
-# ── Load .env that lives next to this script ───────────────────────────
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path, override=True)
 token = os.getenv("DISCORD_TOKEN")
-
-# Debug - remove these two lines after it works
-print(f"[DEBUG] .env found at {env_path}: {env_path.exists()}")
-print(f"[DEBUG] Token loaded? {token is not None}")
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
