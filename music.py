@@ -65,7 +65,7 @@ class Music(commands.Cog):
                 "preferredcodec": "mp3",
                 "preferredquality": "192",
             }],
-            "ffmpeg_location": "ffmpeg",
+            "ffmpeg_location": "/usr/bin/ffmpeg",
             "quiet": True,
         }
 
@@ -113,7 +113,7 @@ class Music(commands.Cog):
             except Exception as exc:
                 print(f"[ERROR] after_playing: {exc}")
 
-        ffmpeg_path = "ffmpeg"
+        ffmpeg_path = "/usr/bin/ffmpeg"
         vc.play(
             discord.FFmpegPCMAudio(source=filename, executable=ffmpeg_path),
             after=_after_playing,
