@@ -113,7 +113,7 @@ class Music(commands.Cog):
             except Exception as exc:
                 print(f"[ERROR] after_playing: {exc}")
 
-        ffmpeg_path = r"C:\ffmpeg-7.1.1-essentials_build\bin\ffmpeg.exe"
+        ffmpeg_path = "ffmpeg"
         vc.play(
             discord.FFmpegPCMAudio(source=filename, executable=ffmpeg_path),
             after=_after_playing,
@@ -154,6 +154,10 @@ class Music(commands.Cog):
         if member == self.bot.user and before.channel and not after.channel:
             guild_id = before.channel.guild.id
             self.queues.pop(guild_id, None)
+
+    @commands.command()
+    async def ping(self, ctx):
+      await ctx.send("Pong!")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Music(bot))

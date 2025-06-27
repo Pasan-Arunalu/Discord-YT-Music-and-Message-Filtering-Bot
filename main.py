@@ -9,9 +9,7 @@ import asyncio
 
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path, override=True)
-token = os.getenv("DISCORD_TOKEN")
 
-load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
